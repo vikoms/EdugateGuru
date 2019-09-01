@@ -90,6 +90,7 @@
             android:layout_height="wrap_content"
             android:inputType="date"
             android:ems="10"
+            android:hint="2002/01/01"
             />
     </LinearLayout>
 
@@ -115,6 +116,7 @@
             android:layout_height="wrap_content"
             android:inputType="time"
             android:ems="5"
+            android:hint="00:00"
             />
     </LinearLayout>
     <Button
