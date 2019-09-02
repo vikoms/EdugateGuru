@@ -61,7 +61,8 @@
             android:layout_width="160dp"
             android:layout_height="190dp"
             app:cardCornerRadius="5dp"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:id="@+id/menuTugas">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -107,7 +108,8 @@
             android:layout_width="160dp"
             android:layout_height="190dp"
             app:cardCornerRadius="5dp"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:id="@+id/menuProfil">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -147,7 +149,8 @@
             android:layout_width="160dp"
             android:layout_height="190dp"
             app:cardCornerRadius="5dp"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:id="@+id/menuAbout">
 
             <LinearLayout
                 android:layout_width="match_parent"
