@@ -11,6 +11,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ProfileActivity"></activity>
         <activity android:name=".EditProfileActivity" />
+        <activity android:name=".TugasActivity"></activity>
+        <activity android:name=".AboutActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

@@ -22,6 +22,7 @@
             android:id="@+id/bankcardId"
             android:layout_width="160dp"
             android:layout_height="190dp"
+            app:cardCornerRadius="5dp"
             android:layout_margin="10dp">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -59,6 +60,7 @@
             android:clickable="true"
             android:layout_width="160dp"
             android:layout_height="190dp"
+            app:cardCornerRadius="5dp"
             android:layout_margin="10dp">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -68,7 +70,6 @@
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
-                    android:background="@drawable/cerclebackgroundpink"
                     android:src="@drawable/tugas"
                     android:padding="10dp"/>
                 <TextView
@@ -105,6 +106,7 @@
             android:clickable="true"
             android:layout_width="160dp"
             android:layout_height="190dp"
+            app:cardCornerRadius="5dp"
             android:layout_margin="10dp">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -115,7 +117,6 @@
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
-                    android:background="@drawable/cerclebackgroundgreen"
                     android:padding="10dp"
                     android:src="@drawable/profil" />
 
@@ -145,6 +146,7 @@
             android:clickable="true"
             android:layout_width="160dp"
             android:layout_height="190dp"
+            app:cardCornerRadius="5dp"
             android:layout_margin="10dp">
 
             <LinearLayout
@@ -156,7 +158,6 @@
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
-                    android:background="@drawable/cerclebackgroundyello"
                     android:padding="10dp"
                     android:src="@drawable/about" />
 
