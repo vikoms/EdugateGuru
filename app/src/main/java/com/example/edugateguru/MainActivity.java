@@ -20,8 +20,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnStart.setOnClickListener(this);
 
 
-
-
     }
 
     @Override
