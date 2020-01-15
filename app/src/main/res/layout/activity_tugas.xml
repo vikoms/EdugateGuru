@@ -86,14 +86,16 @@
             android:text="Date"
             android:textSize="20sp"
             />
-        <EditText
-            android:id="@+id/textDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="date"
-            android:ems="10"
-            android:hint="2002/01/01"
-            />
+            <TextView
+                android:id="@+id/textDate"
+                android:layout_width="350dp"
+                android:layout_height="40dp"
+                android:inputType="date"
+                android:ems="10"
+                android:textSize="30dp"
+                android:hint="2002/01/01"
+                android:drawableRight="@drawable/ic_date_range_black_24dp"
+                />
     </LinearLayout>
 
     <LinearLayout
