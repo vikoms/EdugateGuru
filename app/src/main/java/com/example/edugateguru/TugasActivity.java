@@ -22,6 +22,7 @@ public class TugasActivity extends AppCompatActivity {
     DatabaseReference ref;
     String namaTugas,descTugas,dateTugas,timeTugas,kelasTugas;
     EditText editNamaTugas,editDescTugas,editDateTugas,editTimeTugas,editKelasTugas;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

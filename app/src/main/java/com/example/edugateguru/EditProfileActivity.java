@@ -73,7 +73,12 @@ public class EditProfileActivity extends AppCompatActivity {
 
     private void updateData(String valNama, String valEmail, String valPhone, String valKota, String valNip, String valPelajaran) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users").child("Guru").child(currentUser.getUid());
-        Guru note = new Guru(valNama, valKota, valNip,valEmail,valPhone,valPelajaran);
+        Guru guru = new Guru(valNama, valKota, valNip,valEmail,valPhone,valPelajaran);
+        databaseReference.setValue(guru);
+
+        Toast.makeText(this, "Data Berhasil di Update", Toast.LENGTH_SHORT).show();
+
+        startActivity(new Intent(EditProfileActivity.this, HomeActivity.class));
 
     }
 

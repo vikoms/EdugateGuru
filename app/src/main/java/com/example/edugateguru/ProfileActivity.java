@@ -27,6 +27,7 @@ public class ProfileActivity extends AppCompatActivity {
     DatabaseReference database;
     TextView txtEmail,txtNama,txtPhone,txtNip,txtIdGuru,txtKota;
     String pelajaran;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +56,8 @@ public class ProfileActivity extends AppCompatActivity {
             txtKota.setText(kota);
             String telp = dataSnapshot.child("telp").getValue().toString();
             txtPhone.setText(telp);
-            pelajaran = dataSnapshot.child("pelajaran").getValue().toString();
+            pelajaran = dataSnapshot.child("Pelajaran").getValue().toString();
+//              Toast.makeText(ProfileActivity.this, pelajaran, Toast.LENGTH_SHORT).show();
           }
 
           @Override
@@ -86,6 +88,5 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
     }
 }
