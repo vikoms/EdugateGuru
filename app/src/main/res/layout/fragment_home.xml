@@ -202,4 +202,13 @@
         </androidx.cardview.widget.CardView>
 
     </LinearLayout>
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="Logout"
+        android:background="@color/colorPrimary"
+        android:textColor="@android:color/white"
+        android:id="@+id/btn_logout"
+        />
 </LinearLayout>

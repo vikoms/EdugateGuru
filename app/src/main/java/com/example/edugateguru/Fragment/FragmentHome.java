@@ -5,19 +5,26 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.example.edugateguru.HomeActivity;
 import com.example.edugateguru.ProfileActivity;
 import com.example.edugateguru.R;
 import com.example.edugateguru.TugasActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class FragmentHome extends Fragment implements View.OnClickListener{
 
     CardView cvAgenda,cvProfile,cvAbout,cvTugas;
+    Button btnLogout;
+    FirebaseAuth mAuth;
+    FirebaseUser user = mAuth.getInstance().getCurrentUser();
 
     @Nullable
     @Override
@@ -42,6 +49,9 @@ public class FragmentHome extends Fragment implements View.OnClickListener{
         cvTugas = getView().findViewById(R.id.tugas);
         cvTugas.setOnClickListener(this);
 
+        btnLogout = getView().findViewById(R.id.btn_logout);
+        btnLogout.setOnClickListener(this);
+
     }
 
     @Override
@@ -53,6 +63,7 @@ public class FragmentHome extends Fragment implements View.OnClickListener{
             case R.id.profile:
                 startActivity(new Intent(getActivity().getApplication(), ProfileActivity.class));
                 break;
+
         }
     }
 }

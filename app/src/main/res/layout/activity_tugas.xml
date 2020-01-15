@@ -30,6 +30,7 @@
             android:textSize="20sp"
             android:text="Nama Tugas"/>
         <EditText
+            android:id="@+id/txtTugas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20sp"
@@ -53,6 +54,7 @@
             android:textSize="20sp"
             />
         <EditText
+            android:id="@+id/descTugas"
             android:background="@drawable/boxbg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -78,7 +80,6 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp">
         <TextView
-            android:id="@+id/textDate"
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -86,6 +87,7 @@
             android:textSize="20sp"
             />
         <EditText
+            android:id="@+id/textDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="date"
@@ -104,7 +106,6 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp">
         <TextView
-            android:id="@+id/textTime"
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -112,18 +113,44 @@
             android:textSize="20sp"
             />
         <EditText
+            android:id="@+id/textTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="time"
+            android:inputType="datetime"
             android:ems="5"
             android:hint="00:00"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/containerContent5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/containerContent4"
+        android:orientation="vertical"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp">
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Kelas"
+            android:textSize="20sp"
+            />
+        <EditText
+            android:id="@+id/textKelas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:ems="5"
+            android:hint="XII-RPL-3"
             />
     </LinearLayout>
     <Button
         android:id="@+id/btnTugas"
         android:layout_width="145dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/containerContent4"
+        android:layout_below="@id/containerContent5"
         android:layout_marginTop="10dp"
         android:background="@drawable/custom_button"
         android:text="Buat"

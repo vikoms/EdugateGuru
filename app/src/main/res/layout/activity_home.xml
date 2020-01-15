@@ -12,11 +12,21 @@
     <include
         android:id="@+id/toolbar_main"
         layout="@layout/main_toolbar"/>
+
+
+<!--    <Button-->
+<!--        android:layout_width="100dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:text="Logout"-->
+<!--        android:id="@+id/btn_logout"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_centerVertical="true"-->
+<!--        />-->
     <FrameLayout
         android:layout_below="@id/toolbar_main"
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerVertical="true"/>
-    
+
 </RelativeLayout>
