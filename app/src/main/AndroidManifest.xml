@@ -14,8 +14,8 @@
         <activity android:name=".ProfileActivity" />
         <activity android:name=".EditProfileActivity" />
         <activity android:name=".TugasActivity" />
-        <activity android:name=".AboutActivity" />
         <activity android:name=".HomeActivity" />
+        <activity android:name=".AboutActivity"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
