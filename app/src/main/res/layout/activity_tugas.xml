@@ -139,14 +139,10 @@
             android:text="Kelas"
             android:textSize="20sp"
             />
-        <EditText
-            android:id="@+id/textKelas"
+        <Spinner
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:ems="5"
-            android:hint="XII-RPL-3"
-            />
+            android:layout_height="40dp"
+            android:id="@+id/spinner_kelas"/>
     </LinearLayout>
     <Button
         android:id="@+id/btnTugas"
