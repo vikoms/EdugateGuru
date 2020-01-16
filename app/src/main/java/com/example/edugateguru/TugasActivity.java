@@ -4,14 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.edugateguru.Models.Tugas;
@@ -27,7 +30,7 @@ public class TugasActivity extends AppCompatActivity implements DatePickerDialog
     DatabaseReference ref;
     String namaTugas,descTugas,dateTugas,timeTugas,kelasTugas;
     EditText editNamaTugas,editDescTugas,editDateTugas,editTimeTugas,editKelasTugas;
-    TextView tvDateTugas;
+    TextView tvDateTugas, tvTimeTugas;
     ImageView dateChooser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +41,7 @@ public class TugasActivity extends AppCompatActivity implements DatePickerDialog
         editNamaTugas = findViewById(R.id.txtTugas);
         editDescTugas = findViewById(R.id.descTugas);
         tvDateTugas = findViewById(R.id.textDate);
-        editTimeTugas = findViewById(R.id.textTime);
+        tvTimeTugas = findViewById(R.id.textTime);
         editKelasTugas = findViewById(R.id.textKelas);
 
 
@@ -68,6 +71,12 @@ public class TugasActivity extends AppCompatActivity implements DatePickerDialog
                 showDatePickerDialog();
             }
         });
+        tvTimeTugas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showTimePickerDialog();
+            }
+        });
 
     }
 
@@ -78,6 +87,23 @@ public class TugasActivity extends AppCompatActivity implements DatePickerDialog
                                             Calendar.getInstance().get(Calendar.MONTH),
                                             Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
         datePickerDialog.show();
+    }
+
+    public void showTimePickerDialog() {
+        int hour = Calendar.getInstance().get(Calendar.HOUR);
+        int min = Calendar.getInstance().get(Calendar.MINUTE);
+
+        boolean is24HourFormat = DateFormat.is24HourFormat(this);
+
+        TimePickerDialog timePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int hour, int min) {
+                String time = hour + ":" + min;
+                tvTimeTugas.setText(time);
+            }
+        }, hour, min, is24HourFormat);
+
+        timePickerDialog.show();
     }
 
     @Override

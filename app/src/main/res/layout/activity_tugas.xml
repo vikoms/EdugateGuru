@@ -93,7 +93,7 @@
                 android:inputType="date"
                 android:ems="10"
                 android:textSize="30dp"
-                android:hint="2002/01/01"
+                android:hint="12/01/2012"
                 android:drawableRight="@drawable/ic_date_range_black_24dp"
                 />
     </LinearLayout>
@@ -114,13 +114,15 @@
             android:text="Time"
             android:textSize="20sp"
             />
-        <EditText
+        <TextView
             android:id="@+id/textTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="350dp"
+            android:layout_height="40dp"
             android:inputType="datetime"
             android:ems="5"
             android:hint="00:00"
+            android:textSize="30dp"
+            android:drawableRight="@drawable/ic_access_time_black_24dp"
             />
     </LinearLayout>
     <LinearLayout
@@ -139,14 +141,6 @@
             android:text="Kelas"
             android:textSize="20sp"
             />
-        <EditText
-            android:id="@+id/textKelas"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:ems="5"
-            android:hint="XII-RPL-3"
-            />
     </LinearLayout>
     <Button
         android:id="@+id/btnTugas"
@@ -160,6 +154,14 @@
         android:textColor="#fff"
         android:layout_centerHorizontal="true"
         />
+
+    <EditText
+        android:id="@+id/textKelas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="5"
+        android:hint="XII-RPL-3"
+        android:inputType="text" />
 
 
 </RelativeLayout>
