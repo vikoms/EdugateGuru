@@ -12,10 +12,11 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
-import com.example.edugateguru.HomeActivity;
-import com.example.edugateguru.ProfileActivity;
+//import com.example.edugateguru.HomeActivity;
+//import com.example.edugateguru.ProfileActivity;
+//import com.example.edugateguru.TugasActivity;
 import com.example.edugateguru.R;
-import com.example.edugateguru.TugasActivity;
+import com.example.edugateguru.agenda;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -57,11 +58,14 @@ public class FragmentHome extends Fragment implements View.OnClickListener{
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.tugas:
-                startActivity(new Intent(getActivity().getApplication(), TugasActivity.class));
-                break;
-            case R.id.profile:
-                startActivity(new Intent(getActivity().getApplication(), ProfileActivity.class));
+//            case R.id.tugas:
+//                startActivity(new Intent(getActivity().getApplication(), TugasActivity.class));
+//                break;
+//            case R.id.profile:
+//                startActivity(new Intent(getActivity().getApplication(), ProfileActivity.class));
+//                break;
+            case R.id.agenda:
+                startActivity(new Intent(getActivity().getApplication(), agenda.class));
                 break;
 
         }
