@@ -79,21 +79,16 @@
         android:layout_marginTop="5dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp">
-        <TextView
-            android:layout_marginTop="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Date"
-            android:textSize="20sp"
-            />
+
             <TextView
+                android:gravity="center_vertical"
                 android:id="@+id/textDate"
-                android:layout_width="350dp"
+                android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:inputType="date"
                 android:ems="10"
-                android:textSize="30dp"
-                android:hint="2002/01/01"
+                android:textSize="20dp"
+                android:hint="Deadlime Tanggal"
                 android:drawableRight="@drawable/ic_date_range_black_24dp"
                 />
     </LinearLayout>
@@ -107,24 +102,22 @@
         android:layout_marginTop="5dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp">
+
+
         <TextView
-            android:layout_marginTop="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Time"
-            android:textSize="20sp"
-            />
-        <TextView
+            android:gravity="center_vertical"
             android:id="@+id/textTime"
-            android:layout_width="350dp"
+            android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:inputType="datetime"
-            android:ems="5"
-            android:hint="00:00"
-            android:textSize="30dp"
+            android:inputType="time"
+            android:ems="10"
+            android:textSize="20dp"
+            android:hint="Deadline Jam"
             android:drawableRight="@drawable/ic_access_time_black_24dp"
             />
+
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/containerContent5"
         android:layout_width="match_parent"

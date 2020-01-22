@@ -13,10 +13,10 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.example.edugateguru.AboutActivity;
-import com.example.edugateguru.HomeActivity;
 import com.example.edugateguru.ProfileActivity;
 import com.example.edugateguru.R;
 import com.example.edugateguru.TugasActivity;
+import com.example.edugateguru.AgendaActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -70,6 +70,9 @@ public class FragmentHome extends Fragment implements View.OnClickListener {
                 break;
             case R.id.about:
                 startActivity(new Intent(getActivity().getApplication(), AboutActivity.class));
+                break;
+            case R.id.agenda:
+                startActivity(new Intent(getActivity().getApplication(), AgendaActivity.class));
                 break;
 
 

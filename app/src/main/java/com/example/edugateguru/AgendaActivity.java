@@ -4,28 +4,42 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
+import com.example.edugateguru.Models.Agenda;
+import com.example.edugateguru.Models.Tugas;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-public class agenda extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
+public class AgendaActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
     SimpleDateFormat dateFormatter;
     DatePickerDialog datePickerDialog;
     TextView timeF,timeL,txtDate;
     ImageButton date;
-
+    EditText mapel,materi,kelas,siswaTidakMasuk;
+    Button btnButton;
+    FirebaseDatabase database;
+    FirebaseAuth mAuth;
+    FirebaseUser currentUser;
+    DatabaseReference ref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +50,22 @@ public class agenda extends AppCompatActivity implements DatePickerDialog.OnDate
         txtDate= findViewById(R.id.txtDate);
         timeF = findViewById(R.id.time_first);
         timeL = findViewById(R.id.time_last);
+        btnButton = findViewById(R.id.btnSubmitAgenda);
+        mapel = findViewById(R.id.pelajaran);
+        materi= findViewById(R.id.materi_belajar);
+        kelas = findViewById(R.id.kelas_belajar);
+        siswaTidakMasuk = findViewById(R.id.siswa_tidak_masuk);
+
+        database = FirebaseDatabase.getInstance();
+        ref = database.getReference("agenda");
+
+
+        btnButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addAgenda();
+            }
+        });
 
         date.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -57,6 +87,26 @@ public class agenda extends AppCompatActivity implements DatePickerDialog.OnDate
                 showTimeDialog2();
             }
         });
+
+    }
+
+    private void addAgenda() {
+        String tanggal = txtDate.getText().toString().trim();
+        String jamMulai= timeF.getText().toString().trim();
+        String jamSelesai = timeL.getText().toString().trim();
+        String pelajaranVal = mapel.getText().toString().trim();
+        String materiVal = materi.getText().toString().trim();
+        String kelasVal = kelas.getText().toString().trim();
+        String siswaTidakMasukVal = siswaTidakMasuk.getText().toString().trim();
+
+        String id = ref.push().getKey();
+        Agenda agenda = new Agenda(tanggal,jamMulai,jamSelesai,pelajaranVal,materiVal,kelasVal,siswaTidakMasukVal);
+
+        ref.child(id).setValue(agenda);
+        Toast.makeText(this, "Berhasil", Toast.LENGTH_SHORT).show();
+
+        startActivity(new Intent(AgendaActivity.this,HomeActivity.class));
+
 
     }
 
@@ -98,6 +148,7 @@ public class agenda extends AppCompatActivity implements DatePickerDialog.OnDate
                 Calendar.getInstance().get(Calendar.YEAR),
                 Calendar.getInstance().get(Calendar.MONTH),
                 Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+        datePickerDialog.show();
     }
 
 
