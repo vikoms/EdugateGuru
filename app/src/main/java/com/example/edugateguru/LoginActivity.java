@@ -30,7 +30,12 @@ public class LoginActivity extends AppCompatActivity {
         pass = findViewById(R.id.txtPassLogin);
         mAuth = FirebaseAuth.getInstance();
 
+        FirebaseUser user = mAuth.getCurrentUser();
 
+        if(user != null) {
+            Intent main = new Intent(LoginActivity.this, HomeActivity.class);
+            startActivity(main);
+        }
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,14 +65,4 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-//        FirebaseUser user = mAuth.getCurrentUser();
-//
-//        if(user != null) {
-//            Intent main = new Intent(LoginActivity.this, HomeActivity.class);
-//            startActivity(main);
-//        }
-    }
 }
