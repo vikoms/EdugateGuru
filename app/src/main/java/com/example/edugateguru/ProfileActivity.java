@@ -7,9 +7,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.edugateguru.Models.Guru;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -27,6 +29,7 @@ public class ProfileActivity extends AppCompatActivity {
     DatabaseReference database;
     TextView txtEmail,txtNama,txtPhone,txtNip,txtIdGuru,txtKota;
     String pelajaran;
+    ImageView userPhoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,7 @@ public class ProfileActivity extends AppCompatActivity {
         txtNip = findViewById(R.id.txtNIP);
         txtIdGuru = findViewById(R.id.txtIdGuru);
         txtKota = findViewById(R.id.txtAlamat);
+        userPhoto = findViewById(R.id.photo_profile);
 
         database = FirebaseDatabase.getInstance().getReference().child("Users").child("Guru").child(userInfo.getUid());
 
@@ -56,7 +60,7 @@ public class ProfileActivity extends AppCompatActivity {
             txtKota.setText(kota);
             String telp = dataSnapshot.child("telp").getValue().toString();
             txtPhone.setText(telp);
-            pelajaran = dataSnapshot.child("Pelajaran").getValue().toString();
+            pelajaran = dataSnapshot.child("pelajaran").getValue().toString();
 //              Toast.makeText(ProfileActivity.this, pelajaran, Toast.LENGTH_SHORT).show();
           }
 
@@ -82,6 +86,7 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
         txtEmail.setText(userInfo.getEmail());
+        Glide.with(ProfileActivity.this).load(userInfo.getPhotoUrl()).into(userPhoto);
 
     }
 

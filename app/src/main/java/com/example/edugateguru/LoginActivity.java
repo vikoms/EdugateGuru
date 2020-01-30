@@ -54,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
                   Intent main = new Intent(LoginActivity.this, HomeActivity.class);
                   startActivity(main);
               } else {
-                  Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
+                  Toast.makeText(LoginActivity.this, "Username Dan Password Tidak Cocok", Toast.LENGTH_SHORT).show();
               }
             }
         });
