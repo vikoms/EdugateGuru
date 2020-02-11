@@ -1,5 +1,6 @@
 package com.example.edugateguru;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -7,17 +8,20 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.edugateguru.Models.Agenda;
 import com.example.edugateguru.Models.Tugas;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -33,19 +37,22 @@ public class AgendaActivity extends AppCompatActivity implements DatePickerDialo
     SimpleDateFormat dateFormatter;
     DatePickerDialog datePickerDialog;
     TextView timeF,timeL,txtDate;
-    ImageButton date;
+    ImageButton jamMulai,jamSelesai,btnDate;
     EditText mapel,materi,kelas,siswaTidakMasuk;
     Button btnButton;
     FirebaseDatabase database;
     FirebaseAuth mAuth;
     FirebaseUser currentUser;
+    ProgressBar pgAgenda;
     DatabaseReference ref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agenda);
 
-        date = findViewById(R.id.date);
+        jamMulai = findViewById(R.id.btn_jam_mulai);
+        jamSelesai = findViewById(R.id.btn_jam_selesai);
+        btnDate = findViewById(R.id.date);
         dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
         txtDate= findViewById(R.id.txtDate);
         timeF = findViewById(R.id.time_first);
@@ -55,6 +62,7 @@ public class AgendaActivity extends AppCompatActivity implements DatePickerDialo
         materi= findViewById(R.id.materi_belajar);
         kelas = findViewById(R.id.kelas_belajar);
         siswaTidakMasuk = findViewById(R.id.siswa_tidak_masuk);
+        pgAgenda = findViewById(R.id.progressBar_agenda);
 
         database = FirebaseDatabase.getInstance();
         ref = database.getReference("agenda");
@@ -63,31 +71,45 @@ public class AgendaActivity extends AppCompatActivity implements DatePickerDialo
         btnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                btnButton.setVisibility(View.INVISIBLE);
+                pgAgenda.setVisibility(View.VISIBLE);
                 addAgenda();
             }
         });
 
-        date.setOnClickListener(new View.OnClickListener() {
+        btnDate.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
                showDataDialog();
            }
        });
 
-        timeF.setOnClickListener(new View.OnClickListener() {
+        jamMulai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showTimeDialog();
             }
         });
 
-        timeL.setOnClickListener(new View.OnClickListener() {
+        jamSelesai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showTimeDialog2();
             }
         });
 
+        if(getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle("Agenda Kelas");
+        }
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if(item.getItemId() == android.R.id.home) finish();
+        return super.onOptionsItemSelected(item);
     }
 
     private void addAgenda() {
@@ -102,8 +124,15 @@ public class AgendaActivity extends AppCompatActivity implements DatePickerDialo
         String id = ref.push().getKey();
         Agenda agenda = new Agenda(tanggal,jamMulai,jamSelesai,pelajaranVal,materiVal,kelasVal,siswaTidakMasukVal);
 
-        ref.child(id).setValue(agenda);
-        Toast.makeText(this, "Berhasil", Toast.LENGTH_SHORT).show();
+        ref.child(id).setValue(agenda).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Toast.makeText(AgendaActivity.this, "Berhasil", Toast.LENGTH_SHORT).show();
+                finish();
+                btnButton.setVisibility(View.VISIBLE);
+                pgAgenda.setVisibility(View.INVISIBLE);
+            }
+        });
 
         startActivity(new Intent(AgendaActivity.this,HomeActivity.class));
 

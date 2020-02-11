@@ -8,6 +8,7 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -40,7 +41,7 @@ public class TugasActivity extends AppCompatActivity implements DatePickerDialog
     String namaTugas, descTugas, dateTugas, timeTugas, kelasTugas;
     EditText editNamaTugas, editDescTugas, editDateTugas, editTimeTugas, editKelasTugas;
     TextView tvDateTugas,tvTimeTugas;
-    ImageView dateChooser;
+    ImageView btnDeadlineTanggal,btnDeadlineJam;
     ArrayAdapter<Kelas> adapter;
     ArrayList<Kelas> listKelas;
     DatabaseReference refKelas;
@@ -54,9 +55,11 @@ public class TugasActivity extends AppCompatActivity implements DatePickerDialog
 
         editNamaTugas = findViewById(R.id.txtTugas);
         editDescTugas = findViewById(R.id.descTugas);
-        tvDateTugas = findViewById(R.id.textDate);
+        btnDeadlineJam = findViewById(R.id.btn_deadline_jam);
+        btnDeadlineTanggal = findViewById(R.id.btn_deadline_tugas);
         spinnerKelas = findViewById(R.id.spinner_kelas);
-        tvTimeTugas = findViewById(R.id.textTime);
+        tvDateTugas = findViewById(R.id.tv_date_tugas);
+        tvTimeTugas = findViewById(R.id.tv_time_tugas);
 
 
         ref = FirebaseDatabase.getInstance().getReference("Tugas");
@@ -65,7 +68,7 @@ public class TugasActivity extends AppCompatActivity implements DatePickerDialog
 
         listKelas = new ArrayList<>();
 
-        btn_tugas = findViewById(R.id.btnTugas);
+        btn_tugas = findViewById(R.id.btn_tugas);
         btn_tugas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,7 +87,7 @@ public class TugasActivity extends AppCompatActivity implements DatePickerDialog
             }
         });
 
-        tvDateTugas.setOnClickListener(new View.OnClickListener() {
+        btnDeadlineTanggal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDatePickerDialog();
@@ -92,14 +95,27 @@ public class TugasActivity extends AppCompatActivity implements DatePickerDialog
         });
 
 
-        tvTimeTugas.setOnClickListener(new View.OnClickListener() {
+        btnDeadlineJam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showTimePickerDialog();
             }
         });
 
+        if(getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle("Tugas Sekolah");
+        }
 
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if(item.getItemId() == android.R.id.home) finish();
+
+        return super.onOptionsItemSelected(item);
     }
 
     public void showTimePickerDialog() {

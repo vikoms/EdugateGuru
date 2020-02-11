@@ -1,15 +1,16 @@
 package com.example.edugateguru.Models;
 
 public class Guru {
-    String nama,kota,nip,email,telp,pelajaran;
+    String nama,kota,nip,email,telp,pelajaran,uid;
 
-    public Guru(String nama, String kota, String nip, String email, String telp, String pelajaran) {
+    public Guru(String nama, String kota, String nip, String email, String telp, String pelajaran, String uid) {
         this.nama = nama;
         this.kota = kota;
         this.nip = nip;
         this.email = email;
         this.telp = telp;
         this.pelajaran = pelajaran;
+        this.uid = uid;
     }
 
     public String getNama() {
@@ -57,6 +58,14 @@ public class Guru {
     }
 
     public void setPelajaran(String pelajaran) {
-        pelajaran = pelajaran;
+        this.pelajaran = pelajaran;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 }

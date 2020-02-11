@@ -1,156 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    tools:context=".TugasActivity"
+    android:padding="10dp">
 
-    tools:context=".TugasActivity">
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar_tugas"
-        />
-
-    <LinearLayout
-        android:id="@+id/containerContent1"
-        android:layout_below="@id/toolbar"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout2"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text="Nama Tugas"/>
-        <EditText
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.026">
+
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/txtTugas"
+            android:textColor="@android:color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/containerContent2"
-        android:layout_width="match_parent"
+            android:hint="Nama Tugas ..." />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout5"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_below="@id/containerContent1"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginTop="5dp"
-        >
-        <TextView
-            android:id="@+id/textDesc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Description"
-            android:textSize="20sp"
-            />
-        <EditText
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayout2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
+        app:layout_constraintVertical_bias="0.024">
+
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/descTugas"
-            android:background="@drawable/boxbg"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
-            android:lines="8"
-            android:ems="10"
-            android:gravity="left|top"
-            android:maxLines="8"
-            android:minLines="6"
-            android:scrollbars="vertical"
-            android:lineSpacingExtra="5dp"
-            android:layout_marginTop="5dp"
-            />
-    </LinearLayout>
+            android:layout_height="100dp"
+            android:textColor="@android:color/black"
+            android:hint="Deskripsi Tugas" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <LinearLayout
-        android:id="@+id/containerContent3"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/containerContent2"
-        android:orientation="vertical"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp">
+        android:text="Tanggal Deadline Tugas"
+        android:textColor="@android:color/black"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout5"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout5"
+        app:layout_constraintVertical_bias="0.016" />
 
-            <TextView
-                android:gravity="center_vertical"
-                android:id="@+id/textDate"
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:inputType="date"
-                android:ems="10"
-                android:textSize="20dp"
-                android:hint="Deadlime Tanggal"
-                android:drawableRight="@drawable/ic_date_range_black_24dp"
-                />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/containerContent4"
-        android:layout_width="match_parent"
+    <ImageButton
+        android:id="@+id/btn_deadline_tugas"
+        android:layout_width="75dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/containerContent3"
-        android:orientation="vertical"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp">
+        android:layout_marginTop="8dp"
+        android:background="@color/colorPrimary"
+        android:padding="9dp"
+        android:src="@drawable/ic_date_range_black_24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView9"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView9"
+        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:layout_constraintVertical_bias="0.0" />
 
-
-        <TextView
-            android:gravity="center_vertical"
-            android:id="@+id/textTime"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:inputType="time"
-            android:ems="10"
-            android:textSize="20dp"
-            android:hint="Deadline Jam"
-            android:drawableRight="@drawable/ic_access_time_black_24dp"
-            />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/containerContent5"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tv_date_tugas"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/containerContent4"
-        android:orientation="vertical"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp">
-        <TextView
-            android:layout_marginTop="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Kelas"
-            android:textSize="20sp"
-            />
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:id="@+id/spinner_kelas"/>
-    </LinearLayout>
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_deadline_tugas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_deadline_tugas"
+        app:layout_constraintTop_toTopOf="@+id/btn_deadline_tugas"
+        tools:text="12:00" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jam Deadline Tugas"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView9"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView9"
+        app:layout_constraintTop_toBottomOf="@+id/btn_deadline_tugas"
+        app:layout_constraintVertical_bias="0.061" />
+
+    <ImageButton
+        android:id="@+id/btn_deadline_jam"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:padding="9dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btn_deadline_tugas"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/btn_deadline_tugas"
+        app:layout_constraintTop_toBottomOf="@+id/textView13"
+        app:layout_constraintVertical_bias="0.032"
+        android:src="@drawable/ic_date_range_black_24dp"/>
+
+    <TextView
+        android:id="@+id/tv_time_tugas"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        tools:text="13:00"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_deadline_jam"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tv_date_tugas"
+        app:layout_constraintTop_toTopOf="@+id/btn_deadline_jam" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kelas"
+        android:textColor="@android:color/black"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView13"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView13"
+        app:layout_constraintTop_toBottomOf="@+id/btn_deadline_jam"
+        app:layout_constraintVertical_bias="0.061" />
+
+    <Spinner
+        android:id="@+id/spinner_kelas"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.157"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView15"
+        app:layout_constraintVertical_bias="0.068" />
+
     <Button
-        android:id="@+id/btnTugas"
-        android:layout_width="145dp"
+        android:id="@+id/btn_tugas"
+        android:textColor="@android:color/white"
+        android:background="@color/colorPrimary"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/containerContent5"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/custom_button"
-        android:text="Buat"
-        android:textSize="20sp"
-        android:textColor="#fff"
-        android:layout_centerHorizontal="true"
-        />
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_kelas" />
 
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -25,6 +25,13 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         loadFragment(new FragmentHome());
 
+        findViewById(R.id.icon_notif).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeActivity.this, NotificationActivity.class));
+            }
+        });
+
     }
 
 

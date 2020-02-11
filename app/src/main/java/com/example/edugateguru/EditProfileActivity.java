@@ -1,15 +1,11 @@
 package com.example.edugateguru;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
-import android.content.Context;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,12 +13,22 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.example.edugateguru.Models.Guru;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
@@ -32,9 +38,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-public class EditProfileActivity extends AppCompatActivity {
+public class EditProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button btn_confirm;
+    Button btn_confirm, btnChangePassword;
     FirebaseAuth mAuth;
     FirebaseUser currentUser;
     FirebaseDatabase database;
@@ -48,9 +54,10 @@ public class EditProfileActivity extends AppCompatActivity {
     public static final int pReqCode = 1;
     public static final int REQUESCODE = 1;
 
-    private EditText edtNama, edtPhone, edtEmail, edtKota;
+    private EditText edtNama, edtPhone, edtKota;
     private ImageView imgProfile;
     private Uri imgUri;
+    private Dialog myDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,45 +70,35 @@ public class EditProfileActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
 
         edtNama = findViewById(R.id.edtNama);
-        edtEmail = findViewById(R.id.edtEmail);
         edtKota = findViewById(R.id.edtKota);
         edtPhone = findViewById(R.id.edtTelphone);
         imgProfile = findViewById(R.id.photo_profile);
-
+        btnChangePassword = findViewById(R.id.btn_change_password);
         String nama = getIntent().getStringExtra(EXTRA_NAMA);
         String kota = getIntent().getStringExtra(EXTRA_KOTA);
         String telp = getIntent().getStringExtra(EXTRA_TELP);
         String email = getIntent().getStringExtra(EXTRA_EMAIL);
 
 
+        myDialog = new Dialog(EditProfileActivity.this);
+        myDialog.setContentView(R.layout.dialog_change_password);
+        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+
         edtNama.setText(nama);
-        edtEmail.setText(email);
         edtPhone.setText(telp);
         edtKota.setText(kota);
 
-        btn_confirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String valNama = edtNama.getText().toString();
-                String valEmail = edtEmail.getText().toString();
-                String valPhone = edtPhone.getText().toString();
-                String valKota = edtKota.getText().toString();
-                String valPelajaran = getIntent().getStringExtra(EXTRA_PELAJARAN);
-                String valNip = getIntent().getStringExtra(EXTRA_NIP);
-                updateData(valNama, valEmail, valPhone, valKota, valNip, valPelajaran, imgUri, mAuth.getCurrentUser());
-            }
-        });
+        btn_confirm.setOnClickListener(this);
 
-        imgProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (Build.VERSION.SDK_INT >= 22) {
-                    checkAndRequestForPermissions();
-                } else {
-                    openGallery();
-                }
-            }
-        });
+        imgProfile.setOnClickListener(this);
+
+        btnChangePassword.setOnClickListener(this);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle("Edit Profile");
+        }
 
 
     }
@@ -142,7 +139,7 @@ public class EditProfileActivity extends AppCompatActivity {
                             currentUser.updateProfile(updateProfile).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    Guru guru = new Guru(valNama, valKota, valNip, valEmail, valPhone, valPelajaran);
+                                    Guru guru = new Guru(valNama, valKota, valNip, valEmail, valPhone, valPelajaran, currentUser.getUid());
                                     databaseReference.setValue(guru);
 
                                     Toast.makeText(EditProfileActivity.this, "Update profile berhasil", Toast.LENGTH_SHORT).show();
@@ -156,7 +153,7 @@ public class EditProfileActivity extends AppCompatActivity {
                 }
             });
         } else {
-            Guru guru = new Guru(valNama, valKota, valNip, valEmail, valPhone, valPelajaran);
+            Guru guru = new Guru(valNama, valKota, valNip, valEmail, valPhone, valPelajaran, currentUser.getUid());
             databaseReference.setValue(guru);
 
             Toast.makeText(EditProfileActivity.this, "Update profile berhasil", Toast.LENGTH_SHORT).show();
@@ -176,5 +173,87 @@ public class EditProfileActivity extends AppCompatActivity {
             imgUri = data.getData();
             imgProfile.setImageURI(imgUri);
         }
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.btnConfirm) {
+            String valNama = edtNama.getText().toString();
+            String valPhone = edtPhone.getText().toString();
+            String valKota = edtKota.getText().toString();
+            String valPelajaran = getIntent().getStringExtra(EXTRA_PELAJARAN);
+            String valNip = getIntent().getStringExtra(EXTRA_NIP);
+            updateData(valNama, currentUser.getEmail(), valPhone, valKota, valNip, valPelajaran, imgUri, mAuth.getCurrentUser());
+        } else if (view.getId() == R.id.photo_profile) {
+            if (Build.VERSION.SDK_INT >= 22) {
+                checkAndRequestForPermissions();
+            } else {
+                openGallery();
+            }
+        } else if (view.getId() == R.id.btn_change_password) {
+            showDialog();
+        }
+    }
+
+    private void showDialog() {
+
+        final EditText edtNewPassword = myDialog.findViewById(R.id.edit_new_password);
+        final EditText edtOldPassword = myDialog.findViewById(R.id.edit_old_password);
+        final Button btnConfirmChangePassword = myDialog.findViewById(R.id.btn_confirm_change_password);
+        final ProgressBar pgChangePassword = myDialog.findViewById(R.id.progressBar_change_password);
+        myDialog.show();
+
+        btnConfirmChangePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pgChangePassword.setVisibility(View.VISIBLE);
+                btnConfirmChangePassword.setVisibility(View.INVISIBLE);
+                final String newPassword = edtNewPassword.getText().toString();
+                String oldPassword = edtOldPassword.getText().toString();
+
+                if (newPassword.isEmpty() || oldPassword.isEmpty()) {
+                    pgChangePassword.setVisibility(View.INVISIBLE);
+                    btnConfirmChangePassword.setVisibility(View.VISIBLE);
+                    Toast.makeText(EditProfileActivity.this, "Isi Data Dengan Lengkap", Toast.LENGTH_SHORT).show();
+                } else {
+                    AuthCredential credential = EmailAuthProvider
+                            .getCredential(currentUser.getEmail(), oldPassword);
+
+                    currentUser.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                currentUser.updatePassword(newPassword).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+
+                                        if (task.isSuccessful()) {
+
+                                            pgChangePassword.setVisibility(View.INVISIBLE);
+                                            btnConfirmChangePassword.setVisibility(View.VISIBLE);
+
+                                            Toast.makeText(EditProfileActivity.this, "Update Password Berhasil", Toast.LENGTH_SHORT).show();
+                                            myDialog.dismiss();
+                                        }
+
+                                    }
+                                });
+                            } else {
+                                Toast.makeText(EditProfileActivity.this, task.getException() + "", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(EditProfileActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+
+
+            }
+        });
+
+
     }
 }

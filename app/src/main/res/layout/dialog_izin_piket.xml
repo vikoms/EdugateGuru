@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="300dp"
-    android:layout_height="250dp"
+    android:layout_height="280dp"
     android:layout_gravity="center"
     android:gravity="center"
     android:background="@android:color/white">
@@ -19,16 +19,16 @@
             android:id="@+id/tv_nama"
             android:layout_width="300dp"
             android:layout_height="30dp"
-            android:text="Viko dari XII-RPL-3"
+            android:text="Viko "
             android:textAlignment="center"
             android:textColor="@android:color/black"
             android:textSize="25sp" />
 
         <TextView
-            android:id="@+id/tv_minta"
+            android:id="@+id/tv_alasan"
             android:layout_width="200dp"
-            android:layout_height="30dp"
-            android:text="Meminta Izin Piket"
+            android:layout_height="wrap_content"
+            android:text="Izin : Fotocopy"
             android:textAlignment="center"
             android:textColor="@android:color/black"
             android:textSize="20sp" />
@@ -45,7 +45,8 @@
 
 <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:id="@+id/container_btn">
         <Button
             android:id="@+id/btnAcc"
             android:layout_width="100dp"
@@ -70,5 +71,11 @@
         </Button>
 
 </RelativeLayout>
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/pg_izin_piket"
+            android:layout_marginTop="5dp"/>
     </LinearLayout>
 </LinearLayout>

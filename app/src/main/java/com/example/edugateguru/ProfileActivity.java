@@ -6,7 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +33,8 @@ public class ProfileActivity extends AppCompatActivity {
     TextView txtEmail,txtNama,txtPhone,txtNip,txtIdGuru,txtKota;
     String pelajaran;
     ImageView userPhoto;
+    FrameLayout frameProfile;
+    Button btnEditProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +50,15 @@ public class ProfileActivity extends AppCompatActivity {
         txtIdGuru = findViewById(R.id.txtIdGuru);
         txtKota = findViewById(R.id.txtAlamat);
         userPhoto = findViewById(R.id.photo_profile);
-
+        frameProfile = findViewById(R.id.frame_profile);
+        btnEditProfile = findViewById(R.id.editprofile);
         database = FirebaseDatabase.getInstance().getReference().child("Users").child("Guru").child(userInfo.getUid());
 
       database.addValueEventListener(new ValueEventListener() {
           @Override
           public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+              frameProfile.setVisibility(View.INVISIBLE);
+              btnEditProfile.setVisibility(View.VISIBLE);
             String nama = dataSnapshot.child("nama").getValue().toString();
             txtNama.setText(nama);
             String nip = dataSnapshot.child("nip").getValue().toString();
@@ -70,8 +78,13 @@ public class ProfileActivity extends AppCompatActivity {
           }
       });
 
+        if(getSupportActionBar() != null) {
+            getSupportActionBar().setTitle("Profile");
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
-        findViewById(R.id.editprofile).setOnClickListener(new View.OnClickListener() {
+
+        btnEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent edtProfileIntent = new Intent(ProfileActivity.this, EditProfileActivity.class);
@@ -88,6 +101,14 @@ public class ProfileActivity extends AppCompatActivity {
         txtEmail.setText(userInfo.getEmail());
         Glide.with(ProfileActivity.this).load(userInfo.getPhotoUrl()).into(userPhoto);
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if(item.getItemId() == android.R.id.home) finish();
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

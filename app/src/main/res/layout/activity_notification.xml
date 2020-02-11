@@ -6,29 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".NotificationActivity">
 
-    <RelativeLayout
-        android:id="@+id/textToolbar"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="#BE2EDD"
-        android:layout_marginBottom="10dp"
-        >
 
-        <TextView
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text="Notifikasi"
-            android:textColor="@android:color/white"
-            android:fontFamily="sans-serif-medium"/>
-    </RelativeLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
+    <com.google.android.material.tabs.TabLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/textToolbar"
-        />
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        app:tabTextColor="@android:color/white"
+        android:id="@+id/tabs"/>
+
+    <androidx.viewpager.widget.ViewPager
+        android:layout_below="@+id/tabs"
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </RelativeLayout>
