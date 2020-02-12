@@ -8,59 +8,6 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:372678301107:android:5ee7de6d91514b4847e7c6",
-        "android_client_info": {
-          "package_name": "com.example.edugate"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "372678301107-pl1u1ul1paesv8a5e51oituvplli81u1.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.edugate",
-            "certificate_hash": "df6ac3f16085abe34a3bb641651d3ffdfd7bb256"
-          }
-        },
-        {
-          "client_id": "372678301107-43edt0mop9h8a4pmhilr6m226fdbvdh4.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.edugate",
-            "certificate_hash": "88b6b09b8ad2390a04941ca86e6fa06826599816"
-          }
-        },
-        {
-          "client_id": "372678301107-r15kn8jf8b76gf0sksafeab2if99u36g.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.edugate",
-            "certificate_hash": "1dd18e4a19801d6facbafc0b659dea205937bb97"
-          }
-        },
-        {
-          "client_id": "372678301107-noio92g08m498c7ugsiect4l6lhac70i.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAXk2rhWaaWnR13Ri82SHopGIauBovWb04"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "372678301107-noio92g08m498c7ugsiect4l6lhac70i.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:372678301107:android:731b0e119008c08b47e7c6",
         "android_client_info": {
           "package_name": "com.example.edugateguru"
@@ -68,71 +15,10 @@
       },
       "oauth_client": [
         {
-          "client_id": "372678301107-c6g18imtd75b4s9fascvr60o80hm2gfc.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.edugateguru",
-            "certificate_hash": "df6ac3f16085abe34a3bb641651d3ffdfd7bb256"
-          }
-        },
-        {
-          "client_id": "372678301107-91fdu9p157qfplgkrgeqt73am7837egj.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.edugateguru",
-            "certificate_hash": "ab73a298f106e72d95ea9553abc51313c32552b8"
-          }
-        },
-        {
-          "client_id": "372678301107-4ti0j4i3681a5bk8s07lfmgdeqp84mu7.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.edugateguru",
-            "certificate_hash": "88b6b09b8ad2390a04941ca86e6fa06826599816"
-          }
-        },
-        {
           "client_id": "372678301107-d8r1degois1el9lvdsvjftp7hf6sfbju.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.edugateguru",
-            "certificate_hash": "1dd18e4a19801d6facbafc0b659dea205937bb97"
-          }
-        },
-        {
-          "client_id": "372678301107-noio92g08m498c7ugsiect4l6lhac70i.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAXk2rhWaaWnR13Ri82SHopGIauBovWb04"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "372678301107-noio92g08m498c7ugsiect4l6lhac70i.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:372678301107:android:7734bad500c8845547e7c6",
-        "android_client_info": {
-          "package_name": "com.example.testingfirebase"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "372678301107-ht5gqvhh6hb72lmu8thkeb0u7lq6jhnu.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.testingfirebase",
             "certificate_hash": "1dd18e4a19801d6facbafc0b659dea205937bb97"
           }
         },
