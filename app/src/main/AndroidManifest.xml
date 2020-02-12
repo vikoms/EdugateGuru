@@ -9,12 +9,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity"></activity>
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".EditProfileActivity" />
-        <activity android:name=".TugasActivity" />
-        <activity android:name=".AboutActivity" />
+        <activity android:name=".RegisterActivity"></activity>
+        <activity
+            android:name=".NotificationActivity"
+            android:theme="@style/NotificationTheme" />
+        <activity
+            android:name=".AgendaActivity"
+            android:theme="@style/NotificationTheme" />
+        <activity android:name=".LoginActivity" />
+        <activity
+            android:name=".ProfileActivity"
+            android:theme="@style/NotificationTheme" />
+        <activity android:name=".EditProfileActivity"
+            android:theme="@style/NotificationTheme"  />
+        <activity
+            android:name=".TugasActivity"
+            android:theme="@style/NotificationTheme" />
         <activity android:name=".HomeActivity" />
+        <activity android:name=".AboutActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,5 +35,7 @@
             </intent-filter>
         </activity>
     </application>
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
 </manifest>

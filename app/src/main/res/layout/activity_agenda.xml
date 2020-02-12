@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AgendaActivity"
+    android:padding="10dp">
+
+    <ProgressBar
+        android:visibility="invisible"
+        android:id="@+id/progressBar_agenda"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/btnSubmitAgenda"
+        app:layout_constraintEnd_toEndOf="@+id/btnSubmitAgenda"
+        app:layout_constraintStart_toStartOf="@+id/btnSubmitAgenda"
+        app:layout_constraintTop_toTopOf="@+id/btnSubmitAgenda" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tanggal Mengajar : "
+        android:textColor="@android:color/black"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.004"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jam Mulai :"
+        android:textColor="@android:color/black"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView6"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/date"
+        app:layout_constraintVertical_bias="0.013" />
+
+    <ImageButton
+        android:id="@+id/date"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@color/colorPrimary"
+        android:padding="9dp"
+        android:src="@drawable/ic_date_range_black_24dp"
+        app:layout_constraintEnd_toEndOf="@+id/textView6"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <TextView
+        android:id="@+id/txtDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        tools:text="2012-12-22"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/date"
+        android:contentDescription="Button Date"
+        app:layout_constraintTop_toTopOf="@+id/date"
+        app:layout_constraintVertical_bias="0.533" />
+
+    <ImageButton
+        android:id="@+id/btn_jam_mulai"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:padding="10dp"
+        android:contentDescription="Button Time"
+        android:src="@drawable/ic_access_time_black_24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView10"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView10"
+        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        app:layout_constraintVertical_bias="0.008" />
+
+    <TextView
+        android:id="@+id/time_first"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        tools:text="00:00"
+        android:textColor="@android:color/black"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_jam_mulai"
+        app:layout_constraintEnd_toEndOf="@+id/txtDate"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/txtDate"
+        app:layout_constraintTop_toTopOf="@+id/btn_jam_mulai" />
+
+    <TextView
+        android:id="@+id/time_last"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        tools:text="00:00"
+        android:textColor="@android:color/black"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_jam_selesai"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/time_first"
+        app:layout_constraintTop_toTopOf="@+id/btn_jam_selesai" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jam Selesai : "
+        android:textColor="@android:color/black"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView10"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView10"
+        app:layout_constraintTop_toBottomOf="@+id/btn_jam_mulai"
+        app:layout_constraintVertical_bias="0.013" />
+
+    <ImageButton
+        android:id="@+id/btn_jam_selesai"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:padding="9dp"
+        android:src="@drawable/ic_access_time_black_24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btn_jam_mulai"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/btn_jam_mulai"
+        app:layout_constraintTop_toBottomOf="@+id/textView12"
+        app:layout_constraintVertical_bias="0.012" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_jam_selesai">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/pelajaran"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nama Pelajaran..." />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayout"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout"
+        app:layout_constraintVertical_bias="0.032">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/materi_belajar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Materi..." />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayout3"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout3"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3"
+        app:layout_constraintVertical_bias="0.032">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/kelas_belajar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Kelas..." />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textInputLayout4"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout4"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout4"
+        app:layout_constraintVertical_bias="0.032">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/siswa_tidak_masuk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Siswa yang tidak masuk..." />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnSubmitAgenda"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:text="Button"
+        android:textColor="@color/backgroundcolor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout6"
+        app:layout_constraintVertical_bias="0.116" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,5 +2,9 @@
     <string name="app_name">EdugateGuru</string>
     <string name="contentAbout">Edugate adalah App yang dibuat oleh perusahaan SchoolTech pada saat pelajaran PKK.School Tech terdiri dari 5 orang yang bersekolah di Smk 4 Bandung.</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tab_izin_piket">Izin Piket</string>
+    <string name="tab_panggil_guru">Panggil Guru</string>
 
 </resources>

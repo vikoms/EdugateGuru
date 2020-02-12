@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="300dp"
+    android:layout_height="280dp"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="27dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_nama"
+            android:layout_width="300dp"
+            android:layout_height="30dp"
+            android:text="Viko "
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/tv_alasan"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Izin : Fotocopy"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_izin"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:text="Izinkan ?"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:textSize="20sp" />
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/container_btn">
+        <Button
+            android:id="@+id/btnAcc"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:text="Terima"
+            android:textColor="#ffffff"
+            android:textSize="17sp"
+            android:background="@drawable/custom_btn1">
+        </Button>
+
+        <Button
+            android:id="@+id/btnNo"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Tolak"
+            android:textColor="#ffffff"
+            android:textSize="17sp"
+            android:layout_toRightOf="@+id/btnAcc"
+            android:layout_marginLeft="40dp"
+            android:background="@drawable/custom_btn2">
+        </Button>
+
+</RelativeLayout>
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/pg_izin_piket"
+            android:layout_marginTop="5dp"/>
+    </LinearLayout>
+</LinearLayout>
