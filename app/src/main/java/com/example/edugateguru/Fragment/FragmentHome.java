@@ -13,6 +13,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.example.edugateguru.AboutActivity;
+import com.example.edugateguru.BeritaActivity;
 import com.example.edugateguru.LoginActivity;
 import com.example.edugateguru.ProfileActivity;
 import com.example.edugateguru.R;
@@ -23,7 +24,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class FragmentHome extends Fragment implements View.OnClickListener {
 
-    CardView cvAgenda, cvProfile, cvAbout, cvTugas;
+    CardView cvAgenda, cvProfile, cvAbout, cvTugas,cvBeritSekolah;
     Button btnLogout;
     FirebaseAuth mAuth;
     FirebaseUser user ;
@@ -59,6 +60,10 @@ public class FragmentHome extends Fragment implements View.OnClickListener {
         cvAbout = getView().findViewById(R.id.about);
         cvAbout.setOnClickListener(this);
 
+        cvBeritSekolah = getView().findViewById(R.id.berita_sekolah);
+        cvBeritSekolah.setOnClickListener(this);
+
+
 
     }
 
@@ -81,7 +86,10 @@ public class FragmentHome extends Fragment implements View.OnClickListener {
                 mAuth.signOut();
                 getActivity().finish();
                 new Intent(getActivity().getApplication(), LoginActivity.class);
-
+                break;
+            case R.id.berita_sekolah:
+                startActivity(new Intent(getActivity().getApplication(), BeritaActivity.class));
+                break;
         }
     }
 }

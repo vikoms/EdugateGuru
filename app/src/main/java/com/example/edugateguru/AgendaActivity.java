@@ -21,7 +21,9 @@ import android.widget.Toast;
 
 import com.example.edugateguru.Models.Agenda;
 import com.example.edugateguru.Models.Tugas;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -45,6 +47,8 @@ public class AgendaActivity extends AppCompatActivity implements DatePickerDialo
     FirebaseUser currentUser;
     ProgressBar pgAgenda;
     DatabaseReference ref;
+
+    private String tanggal,jamMulaiVal,jamSelesaiVal,pelajaranVal,materiVal,kelasVal,siswaTidakMasukVal;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,24 +117,28 @@ public class AgendaActivity extends AppCompatActivity implements DatePickerDialo
     }
 
     private void addAgenda() {
-        String tanggal = txtDate.getText().toString().trim();
-        String jamMulai= timeF.getText().toString().trim();
-        String jamSelesai = timeL.getText().toString().trim();
-        String pelajaranVal = mapel.getText().toString().trim();
-        String materiVal = materi.getText().toString().trim();
-        String kelasVal = kelas.getText().toString().trim();
-        String siswaTidakMasukVal = siswaTidakMasuk.getText().toString().trim();
+         tanggal = txtDate.getText().toString();
+         jamMulaiVal= timeF.getText().toString();
+         jamSelesaiVal = timeL.getText().toString();
+         pelajaranVal = mapel.getText().toString();
+         materiVal = materi.getText().toString();
+         kelasVal = kelas.getText().toString();
+         siswaTidakMasukVal = siswaTidakMasuk.getText().toString();
 
         String id = ref.push().getKey();
-        Agenda agenda = new Agenda(tanggal,jamMulai,jamSelesai,pelajaranVal,materiVal,kelasVal,siswaTidakMasukVal);
+        Agenda agenda = new Agenda(jamMulaiVal,jamSelesaiVal,kelasVal,materiVal,pelajaranVal,siswaTidakMasukVal,tanggal);
 
-        ref.child(id).setValue(agenda).addOnSuccessListener(new OnSuccessListener<Void>() {
+
+        ref.child(id).setValue(agenda).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
-            public void onSuccess(Void aVoid) {
-                Toast.makeText(AgendaActivity.this, "Berhasil", Toast.LENGTH_SHORT).show();
-                finish();
-                btnButton.setVisibility(View.VISIBLE);
-                pgAgenda.setVisibility(View.INVISIBLE);
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()) {
+
+                    Toast.makeText(AgendaActivity.this, "Berhasil", Toast.LENGTH_SHORT).show();
+                    finish();
+                    btnButton.setVisibility(View.VISIBLE);
+                    pgAgenda.setVisibility(View.INVISIBLE);
+                }
             }
         });
 

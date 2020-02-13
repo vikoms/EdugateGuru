@@ -9,6 +9,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -58,6 +59,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
     private ImageView imgProfile;
     private Uri imgUri;
     private Dialog myDialog;
+    private ProgressBar pgEdit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +76,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         edtPhone = findViewById(R.id.edtTelphone);
         imgProfile = findViewById(R.id.photo_profile);
         btnChangePassword = findViewById(R.id.btn_change_password);
+        pgEdit = findViewById(R.id.pg_edit_profile);
         String nama = getIntent().getStringExtra(EXTRA_NAMA);
         String kota = getIntent().getStringExtra(EXTRA_KOTA);
         String telp = getIntent().getStringExtra(EXTRA_TELP);
@@ -101,6 +104,12 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
         }
 
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) finish();
+        return super.onOptionsItemSelected(item);
     }
 
     private void checkAndRequestForPermissions() {
@@ -178,6 +187,9 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.btnConfirm) {
+            pgEdit.setVisibility(View.VISIBLE);
+            btnChangePassword.setVisibility(View.INVISIBLE);
+            btn_confirm.setVisibility(View.INVISIBLE);
             String valNama = edtNama.getText().toString();
             String valPhone = edtPhone.getText().toString();
             String valKota = edtKota.getText().toString();
@@ -234,12 +246,18 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
 
                                             Toast.makeText(EditProfileActivity.this, "Update Password Berhasil", Toast.LENGTH_SHORT).show();
                                             myDialog.dismiss();
+                                        } else {
+                                            pgChangePassword.setVisibility(View.INVISIBLE);
+                                            btnConfirmChangePassword.setVisibility(View.VISIBLE);
+                                            Toast.makeText(EditProfileActivity.this, "Panjang Password min 8 char", Toast.LENGTH_SHORT).show();
                                         }
 
                                     }
                                 });
                             } else {
-                                Toast.makeText(EditProfileActivity.this, task.getException() + "", Toast.LENGTH_SHORT).show();
+                                pgChangePassword.setVisibility(View.INVISIBLE);
+                                btnConfirmChangePassword.setVisibility(View.VISIBLE);
+                                Toast.makeText(EditProfileActivity.this, "Password Sebelumnya Salah", Toast.LENGTH_SHORT).show();
                             }
                         }
                     }).addOnFailureListener(new OnFailureListener() {

@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -46,6 +47,7 @@ public class TugasActivity extends AppCompatActivity implements DatePickerDialog
     ArrayList<Kelas> listKelas;
     DatabaseReference refKelas;
     Spinner spinnerKelas;
+    ProgressBar pgTugas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +62,10 @@ public class TugasActivity extends AppCompatActivity implements DatePickerDialog
         spinnerKelas = findViewById(R.id.spinner_kelas);
         tvDateTugas = findViewById(R.id.tv_date_tugas);
         tvTimeTugas = findViewById(R.id.tv_time_tugas);
-
+        pgTugas = findViewById(R.id.pg_tugas);
+        btn_tugas = findViewById(R.id.btn_tugas);
+        pgTugas.setVisibility(View.VISIBLE);
+        btn_tugas.setVisibility(View.INVISIBLE);
 
         ref = FirebaseDatabase.getInstance().getReference("Tugas");
         refKelas = FirebaseDatabase.getInstance().getReference("Kelas");
@@ -68,10 +73,12 @@ public class TugasActivity extends AppCompatActivity implements DatePickerDialog
 
         listKelas = new ArrayList<>();
 
-        btn_tugas = findViewById(R.id.btn_tugas);
         btn_tugas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                pgTugas.setVisibility(View.VISIBLE);
+                btn_tugas.setVisibility(View.INVISIBLE);
                 namaTugas = editNamaTugas.getText().toString();
                 descTugas = editDescTugas.getText().toString();
                 dateTugas = tvDateTugas.getText().toString();
@@ -82,8 +89,15 @@ public class TugasActivity extends AppCompatActivity implements DatePickerDialog
                 String id = ref.push().getKey();
                 Tugas tugas = new Tugas(namaTugas, descTugas, dateTugas, timeTugas, kelasTugas);
 
-                ref.child(id).setValue(tugas);
-                Toast.makeText(TugasActivity.this, "Berhasil", Toast.LENGTH_SHORT).show();
+                ref.child(id).setValue(tugas).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()) {
+                            Toast.makeText(TugasActivity.this, "Berhasil", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                    }
+                });
             }
         });
 
@@ -159,6 +173,9 @@ public class TugasActivity extends AppCompatActivity implements DatePickerDialog
         refKelas.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                pgTugas.setVisibility(View.INVISIBLE);
+                btn_tugas.setVisibility(View.VISIBLE);
                 for (DataSnapshot item:dataSnapshot.getChildren()) {
                     Kelas kelas = new Kelas(item.getKey(),item.getValue().toString());
                     listKelas.add(kelas);

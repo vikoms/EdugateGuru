@@ -49,7 +49,7 @@ public class PanggilGuruAdapter extends RecyclerView.Adapter<PanggilGuruAdapter.
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         PanggilGuru panggilGuru = panggilGuruList.get(position);
-
+        holder.txtTime.setVisibility(View.INVISIBLE);
         myDialog = new Dialog(mContext);
         myDialog.setContentView(R.layout.dialog_panggil_guru);
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
